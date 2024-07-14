@@ -5,11 +5,14 @@ import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 // project import
+import { RootState } from "@/app/store";
+import { setDashboardDrawerOpen } from "@/features/sidebar/sidebar";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { handlerDrawerOpen, useGetMenuMaster } from "../../../api/menu";
+import { Theme } from "@emotion/react";
+import { useMediaQuery } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
 import AppBarStyled from "./AppBarStyled";
 import HeaderContent from "./HeaderContent";
 
@@ -19,10 +22,12 @@ import HeaderContent from "./HeaderContent";
 
 export default function Header() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const downLG = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const { menuMaster } = useGetMenuMaster();
-  const drawerOpen = menuMaster.isDashboardDrawerOpened;
+  const isDrawerOpen = useSelector(
+    (state: RootState) => state.sidebar.isDrawerOpen
+  );
 
   // header content
   const headerContent = useMemo(() => <HeaderContent />, []);
@@ -36,37 +41,37 @@ export default function Header() {
       <IconButton
         disableRipple
         aria-label="open drawer"
-        onClick={() => handlerDrawerOpen(!drawerOpen)}
+        onClick={() => dispatch(setDashboardDrawerOpen(!isDrawerOpen))}
         edge="start"
         color="secondary"
-        variant="light"
+        // variant="light"
         sx={{
           color: "text.primary",
-          bgcolor: drawerOpen ? iconBackColorOpen : iconBackColor,
+          bgcolor: isDrawerOpen ? iconBackColorOpen : iconBackColor,
           ml: { xs: 0, lg: -2 },
         }}
       >
-        {!drawerOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        {!isDrawerOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </IconButton>
       {headerContent}
     </Toolbar>
   );
 
   // app-bar params
-  const appBar = {
+  const appBar: Theme = {
     position: "fixed",
     color: "inherit",
     elevation: 0,
     sx: {
       borderBottom: `1px solid ${theme.palette.divider}`,
-      // boxShadow: theme.customShadows.z1
+      // boxShadow: theme.customShadows.z1,
     },
   };
 
   return (
     <>
       {!downLG ? (
-        <AppBarStyled open={!!drawerOpen} {...appBar}>
+        <AppBarStyled theme={theme} open={!!isDrawerOpen} {...appBar}>
           {mainHeader}
         </AppBarStyled>
       ) : (

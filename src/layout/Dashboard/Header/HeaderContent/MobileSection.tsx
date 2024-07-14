@@ -14,9 +14,9 @@ import Toolbar from "@mui/material/Toolbar";
 
 // assets
 import MoreOutlined from "@ant-design/icons/MoreOutlined";
-import Transitions from "../../../../components/@extended/Transitions";
 import Profile from "./Profile";
 import Search from "./Search";
+import Transitions from "@/components/ui/@extended/Transitions";
 
 // ==============================|| HEADER CONTENT - MOBILE ||============================== //
 

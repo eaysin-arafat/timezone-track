@@ -14,8 +14,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 // project import
 
 // third-party
+import MainCard from "@/components/shared/main-card";
 import ReactApexChart from "react-apexcharts";
-import MainCard from "../../components/MainCard";
 
 // chart options
 const columnChartOptions = {

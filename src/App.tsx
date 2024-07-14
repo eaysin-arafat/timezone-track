@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import ScrollTop from "./components/ScrollTop";
+import ScrollTop from "./components/shared/scroll-top/ScrollTop";
 import router from "./routes";
 import ThemeCustomization from "./themes";
 

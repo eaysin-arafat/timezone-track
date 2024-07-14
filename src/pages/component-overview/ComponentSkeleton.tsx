@@ -7,7 +7,8 @@ import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import MainCard from "../../components/MainCard";
+import MainCard from "../../components/shared/main-card";
+import ComponentWrapper from "./ComponentWrapper";
 
 // ===============================|| COMPONENT - SKELETON ||=============================== //
 

@@ -1,42 +1,72 @@
-import PropTypes from "prop-types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, useEffect } from "react";
 import { Link, matchPath, useLocation } from "react-router-dom";
 
 // material-ui
+import { RootState } from "@/app/store";
+import { MenuItemType } from "@/constants/types/menu-item";
+import { setActiveItem } from "@/features/sidebar/sidebar";
 import Avatar from "@mui/material/Avatar";
-import Chip from "@mui/material/Chip";
+import Chip, { ChipProps } from "@mui/material/Chip";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { handlerActiveItem, useGetMenuMaster } from "../../../../../api/menu";
+import { useDispatch, useSelector } from "react-redux";
 
-// project import
+// Define the NavItem interface
+export interface NavItem extends MenuItemType {
+  chip?: {
+    color: ChipProps["color"];
+    variant: ChipProps["variant"];
+    size: ChipProps["size"];
+    label: string;
+    avatar?:
+      | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+      | undefined;
+  };
+  disabled?: boolean;
+}
 
-export default function NavItem({ item, level }) {
+type Level = number;
+
+type NavItemProps = {
+  item: NavItem;
+  level: Level;
+};
+
+// Define the Level type
+
+export default function NavItem({ item, level }: NavItemProps) {
   const theme = useTheme();
+  const dispatch = useDispatch();
 
-  const { menuMaster } = useGetMenuMaster();
-  const drawerOpen = menuMaster.isDashboardDrawerOpened;
-  const openItem = menuMaster.openedItem;
+  const { isDrawerOpen, openedItem } = useSelector(
+    (state: RootState) => state.sidebar
+  );
 
   let itemTarget = "_self";
   if (item.target) {
     itemTarget = "_blank";
   }
   let listItemProps = {
-    component: forwardRef((props, ref) => (
+    component: forwardRef<HTMLAnchorElement>((props, ref) => (
       <Link ref={ref} {...props} to={item.url} target={itemTarget} />
     )),
   };
+
   if (item?.external) {
-    listItemProps = { component: "a", href: item.url, target: itemTarget };
+    listItemProps = {
+      component: "a",
+      href: item.url,
+      target: itemTarget,
+    } as any;
   }
 
   const Icon = item.icon;
   const itemIcon = item.icon ? (
-    <Icon style={{ fontSize: drawerOpen ? "1rem" : "1.25rem" }} />
+    <Icon style={{ fontSize: isDrawerOpen ? "1rem" : "1.25rem" }} />
   ) : (
     false
   );
@@ -44,11 +74,11 @@ export default function NavItem({ item, level }) {
   const { pathname } = useLocation();
   const isSelected =
     !!matchPath({ path: item.url, end: false }, pathname) ||
-    openItem === item.id;
+    openedItem === item.id;
 
   // active menu item on page load
   useEffect(() => {
-    if (pathname === item.url) handlerActiveItem(item.id);
+    if (pathname === item.url) dispatch(setActiveItem(item.id));
     // eslint-disable-next-line
   }, [pathname]);
 
@@ -59,13 +89,13 @@ export default function NavItem({ item, level }) {
     <ListItemButton
       {...listItemProps}
       disabled={item.disabled}
-      onClick={() => handlerActiveItem(item.id)}
+      onClick={() => dispatch(setActiveItem(item.id))}
       selected={isSelected}
       sx={{
         zIndex: 1201,
-        pl: drawerOpen ? `${level * 28}px` : 1.5,
-        py: !drawerOpen && level === 1 ? 1.25 : 1,
-        ...(drawerOpen && {
+        pl: isDrawerOpen ? `${level * 28}px` : 1.5,
+        py: !isDrawerOpen && level === 1 ? 1.25 : 1,
+        ...(isDrawerOpen && {
           "&:hover": {
             bgcolor: "primary.lighter",
           },
@@ -79,7 +109,7 @@ export default function NavItem({ item, level }) {
             },
           },
         }),
-        ...(!drawerOpen && {
+        ...(!isDrawerOpen && {
           "&:hover": {
             bgcolor: "transparent",
           },
@@ -97,7 +127,7 @@ export default function NavItem({ item, level }) {
           sx={{
             minWidth: 28,
             color: isSelected ? iconSelectedColor : textColor,
-            ...(!drawerOpen && {
+            ...(!isDrawerOpen && {
               borderRadius: 1.5,
               width: 36,
               height: 36,
@@ -107,7 +137,7 @@ export default function NavItem({ item, level }) {
                 bgcolor: "secondary.lighter",
               },
             }),
-            ...(!drawerOpen &&
+            ...(!isDrawerOpen &&
               isSelected && {
                 bgcolor: "primary.lighter",
                 "&:hover": {
@@ -119,7 +149,7 @@ export default function NavItem({ item, level }) {
           {itemIcon}
         </ListItemIcon>
       )}
-      {(drawerOpen || (!drawerOpen && level !== 1)) && (
+      {(isDrawerOpen || (!isDrawerOpen && level !== 1)) && (
         <ListItemText
           primary={
             <Typography
@@ -131,7 +161,7 @@ export default function NavItem({ item, level }) {
           }
         />
       )}
-      {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
+      {(isDrawerOpen || (!isDrawerOpen && level !== 1)) && item.chip && (
         <Chip
           color={item.chip.color}
           variant={item.chip.variant}
@@ -143,5 +173,3 @@ export default function NavItem({ item, level }) {
     </ListItemButton>
   );
 }
-
-NavItem.propTypes = { item: PropTypes.object, level: PropTypes.number };

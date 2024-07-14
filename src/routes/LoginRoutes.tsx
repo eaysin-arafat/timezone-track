@@ -1,13 +1,13 @@
+import Loadable from "@/components/core/loadable";
+import MinimalLayout from "@/layout/MinimalLayout";
 import { lazy } from "react";
-import Loadable from "../components/Loadable";
-import MinimalLayout from "../layout/MinimalLayout";
 
 // project import
 
 // render - login
-const AuthLogin = Loadable(lazy(() => import("../pages/authentication/login")));
+const AuthLogin = Loadable(lazy(() => import("@/pages/authentication/login")));
 const AuthRegister = Loadable(
-  lazy(() => import("../pages/authentication/register"))
+  lazy(() => import("@/pages/authentication/register"))
 );
 
 // ==============================|| AUTH ROUTING ||============================== //

@@ -9,17 +9,27 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import DrawerContent from "./DrawerContent";
 import DrawerHeader from "./DrawerHeader";
 
-import { handlerDrawerOpen, useGetMenuMaster } from "../../../api/menu";
+import { RootState } from "@/app/store";
+import { setDashboardDrawerOpen } from "@/features/sidebar/sidebar";
+import { Theme } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import { drawerWidth } from "../../../config";
 import MiniDrawerStyled from "./MiniDrawerStyled";
 
 // ==============================|| MAIN LAYOUT - DRAWER ||============================== //
 
-export default function MainDrawer({ window }) {
-  const { menuMaster } = useGetMenuMaster();
-  const drawerOpen = menuMaster.isDashboardDrawerOpened;
-  const matchDownMD = useMediaQuery((theme) => theme.breakpoints.down("lg"));
+interface MainDrawerProps {
+  window?: () => Window;
+}
 
+export default function MainDrawer({ window }: MainDrawerProps) {
+  const matchDownMD = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("lg")
+  );
+  const isDrawerOpen = useSelector(
+    (state: RootState) => state.sidebar.isDrawerOpen
+  );
+  const dispatch = useDispatch();
   // responsive drawer container
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -27,8 +37,8 @@ export default function MainDrawer({ window }) {
   // header content
   const drawerContent = useMemo(() => <DrawerContent />, []);
   const drawerHeader = useMemo(
-    () => <DrawerHeader open={!!drawerOpen} />,
-    [drawerOpen]
+    () => <DrawerHeader open={!!isDrawerOpen} />,
+    [isDrawerOpen]
   );
 
   return (
@@ -38,7 +48,7 @@ export default function MainDrawer({ window }) {
       aria-label="mailbox folders"
     >
       {!matchDownMD ? (
-        <MiniDrawerStyled variant="permanent" open={drawerOpen}>
+        <MiniDrawerStyled variant="permanent" open={isDrawerOpen}>
           {drawerHeader}
           {drawerContent}
         </MiniDrawerStyled>
@@ -46,8 +56,8 @@ export default function MainDrawer({ window }) {
         <Drawer
           container={container}
           variant="temporary"
-          open={drawerOpen}
-          onClose={() => handlerDrawerOpen(!drawerOpen)}
+          open={isDrawerOpen}
+          onClose={() => dispatch(setDashboardDrawerOpen(!isDrawerOpen))}
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", lg: "none" },

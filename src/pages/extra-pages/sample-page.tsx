@@ -1,10 +1,8 @@
 // material-ui
+import MainCard from "@/components/shared/main-card";
 import Typography from "@mui/material/Typography";
-import MainCard from "../../components/MainCard";
 
-// project import
-
-// ==============================|| SAMPLE PAGE ||============================== //
+// SAMPLE PAGE
 
 export default function SamplePage() {
   return (

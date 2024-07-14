@@ -22,11 +22,11 @@ import LogoutOutlined from "@ant-design/icons/LogoutOutlined";
 import SettingOutlined from "@ant-design/icons/SettingOutlined";
 import UserOutlined from "@ant-design/icons/UserOutlined";
 import avatar1 from "../../../../../assets/images/users/avatar-1.png";
-import Avatar from "../../../../../components/@extended/Avatar";
-import Transitions from "../../../../../components/@extended/Transitions";
-import MainCard from "../../../../../components/MainCard";
+import Avatar from "../../../../../components/ui/@extended/Avatar";
 import ProfileTab from "./ProfileTab";
 import SettingTab from "./SettingTab";
+import Transitions from "@/components/ui/@extended/Transitions";
+import MainCard from "@/components/shared/main-card";
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {

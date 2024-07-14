@@ -6,6 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 // project import
 import { GithubOutlined } from "@ant-design/icons";
+import { Theme } from "@mui/material";
 import MobileSection from "./MobileSection";
 import Notification from "./Notification";
 import Profile from "./Profile";
@@ -14,7 +15,7 @@ import Search from "./Search";
 // ==============================|| HEADER - CONTENT ||============================== //
 
 export default function HeaderContent() {
-  const downLG = useMediaQuery((theme) => theme.breakpoints.down("lg"));
+  const downLG = useMediaQuery((theme: Theme) => theme.breakpoints.down("lg"));
 
   return (
     <>
@@ -22,7 +23,8 @@ export default function HeaderContent() {
       {downLG && <Box sx={{ width: "100%", ml: 1 }} />}
       <IconButton
         component={Link}
-        href="https://github.com/codedthemes/mantis-free-react-admin-template"
+        // href="https://github.com/codedthemes/mantis-free-react-admin-template"
+        href="https://github.com/eaysin-arafat/timezone-track.git"
         target="_blank"
         disableRipple
         color="secondary"

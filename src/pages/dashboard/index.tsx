@@ -15,16 +15,19 @@ import Typography from "@mui/material/Typography";
 // project import
 
 // assets
+import avatar1 from "@/assets/images/users/avatar-1.png";
+import avatar2 from "@/assets/images/users/avatar-2.png";
+import avatar3 from "@/assets/images/users/avatar-3.png";
+import avatar4 from "@/assets/images/users/avatar-4.png";
+import AnalyticEcommerce from "@/components/shared/cards/statistics/AnalyticEcommerce";
+import MainCard from "@/components/shared/main-card";
 import GiftOutlined from "@ant-design/icons/GiftOutlined";
 import MessageOutlined from "@ant-design/icons/MessageOutlined";
 import SettingOutlined from "@ant-design/icons/SettingOutlined";
-import avatar1 from "../../assets/images/users/avatar-1.png";
-import avatar2 from "../../assets/images/users/avatar-2.png";
-import avatar3 from "../../assets/images/users/avatar-3.png";
-import avatar4 from "../../assets/images/users/avatar-4.png";
-import AnalyticEcommerce from "../../components/cards/statistics/AnalyticEcommerce";
-import MainCard from "../../components/MainCard";
 import MonthlyBarChart from "./MonthlyBarChart";
+import OrderTable from "./OrdersTable";
+import ReportAreaChart from "./ReportAreaChart";
+import SaleReportCard from "./SaleReportCard";
 import UniqueVisitorCard from "./UniqueVisitorCard";
 
 // avatar style
@@ -129,7 +132,7 @@ export default function DashboardDefault() {
           <Grid item />
         </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
-          <OrdersTable />
+          <OrderTable />
         </MainCard>
       </Grid>
       <Grid item xs={12} md={5} lg={4}>

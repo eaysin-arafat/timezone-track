@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 // project import
-import AuthFooter from "../../components/cards/AuthFooter";
 import Logo from "../../components/logo/LogoMain";
+import AuthFooter from "../../components/shared/cards/AuthFooter";
 import AuthCard from "./AuthCard";
 
 // ==============================|| AUTHENTICATION - WRAPPER ||============================== //

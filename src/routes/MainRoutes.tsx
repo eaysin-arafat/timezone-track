@@ -1,37 +1,56 @@
 import { lazy } from "react";
 
 // project import
-import Loadable from "../components/Loadable";
-import DashboardLayout from "../layout/Dashboard";
+import Loadable from "@/components/core/loadable";
+import Clock from "@/pages/clock";
+import Overview from "@/pages/overview";
+import {
+  URLClock,
+  URLColorThemes,
+  URLHome,
+  URLOverview,
+  URLSamplePage,
+  URLShadows,
+  URLTypography,
+} from "./router-link";
 
-const Color = Loadable(lazy(() => import("../pages/component-overview/color")));
+const Dashboard = Loadable(lazy(() => import("@/layout/Dashboard")));
+const Color = Loadable(lazy(() => import("@/pages/component-overview/color")));
 const Typography = Loadable(
-  lazy(() => import("../pages/component-overview/typography"))
+  lazy(() => import("@/pages/component-overview/typography"))
 );
 const Shadow = Loadable(
-  lazy(() => import("../pages/component-overview/shadows"))
+  lazy(() => import("@/pages/component-overview/shadows"))
 );
 const DashboardDefault = Loadable(
-  lazy(() => import("../pages/dashboard/index"))
+  lazy(() => import("@/pages/dashboard/index"))
 );
 
 // render - sample page
 const SamplePage = Loadable(
-  lazy(() => import("../pages/extra-pages/sample-page"))
+  lazy(() => import("@/pages/extra-pages/sample-page"))
 );
 
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-  path: "/",
-  element: <DashboardLayout />,
+  path: URLHome(),
+  element: <Dashboard />,
   children: [
     {
-      path: "/",
+      path: URLHome(),
       element: <DashboardDefault />,
     },
     {
-      path: "color",
+      path: URLOverview(),
+      element: <Overview />,
+    },
+    {
+      path: URLClock(),
+      element: <Clock />,
+    },
+    {
+      path: URLColorThemes(),
       element: <Color />,
     },
     {
@@ -44,15 +63,15 @@ const MainRoutes = {
       ],
     },
     {
-      path: "sample-page",
+      path: URLSamplePage(),
       element: <SamplePage />,
     },
     {
-      path: "shadow",
+      path: URLShadows(),
       element: <Shadow />,
     },
     {
-      path: "typography",
+      path: URLTypography(),
       element: <Typography />,
     },
   ],

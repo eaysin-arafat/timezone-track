@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 // project import
-import MainCard from "../../components/MainCard";
+import MainCard from "../../components/shared/main-card";
 import ComponentSkeleton from "./ComponentSkeleton";
 import ComponentWrapper from "./ComponentWrapper";
 
