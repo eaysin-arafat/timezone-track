@@ -6,14 +6,14 @@ import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 // project import
-import DrawerContent from "./DrawerContent";
-import DrawerHeader from "./DrawerHeader";
+import DrawerContent from "./content";
 
 import { RootState } from "@/app/store";
 import { setDashboardDrawerOpen } from "@/features/sidebar/sidebar";
 import { Theme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { drawerWidth } from "../../../config";
+import DrawerHeader from "./header";
 import MiniDrawerStyled from "./MiniDrawerStyled";
 
 // ==============================|| MAIN LAYOUT - DRAWER ||============================== //
@@ -26,10 +26,11 @@ export default function MainDrawer({ window }: MainDrawerProps) {
   const matchDownMD = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("lg")
   );
+  const dispatch = useDispatch();
   const isDrawerOpen = useSelector(
     (state: RootState) => state.sidebar.isDrawerOpen
   );
-  const dispatch = useDispatch();
+  
   // responsive drawer container
   const container =
     window !== undefined ? () => window().document.body : undefined;

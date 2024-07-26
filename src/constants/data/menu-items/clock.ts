@@ -1,5 +1,6 @@
 // assets
 import { MenuGroupType } from "@/constants/types/menu-item";
+import { createClock } from "@/features/clocks/clocks-slice";
 import { URLClock } from "@/routes/router-link";
 import {
   ClockCircleOutlined,
@@ -14,7 +15,7 @@ const clockIcons = {
   ShareAltOutlined,
 };
 
-// ==============================|| MENU ITEMS - CLOCKS ||============================== //
+// MENU ITEMS - CLOCKS
 
 const clocks: MenuGroupType = {
   id: "clocks",
@@ -34,7 +35,8 @@ const clocks: MenuGroupType = {
       type: "item",
       url: "/clocks/add-new",
       icon: clockIcons.PlusCircleOutlined,
-      onClick: () => {},
+      onClick: createClock,
+      isRoute: false,
     },
   ],
 };

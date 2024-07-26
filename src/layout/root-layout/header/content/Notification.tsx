@@ -45,20 +45,20 @@ const actionSX = {
   transform: "none",
 };
 
-// ==============================|| HEADER CONTENT - NOTIFICATION ||============================== //
+// HEADER CONTENT - NOTIFICATION
 
 export default function Notification() {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
 
-  const anchorRef = useRef(null);
+  const anchorRef = useRef<null>(null);
   const [read, setRead] = useState(2);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent | TouchEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -71,7 +71,6 @@ export default function Notification() {
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
         color="secondary"
-        variant="light"
         sx={{
           color: "text.primary",
           bgcolor: open ? iconBackColorOpen : "transparent",

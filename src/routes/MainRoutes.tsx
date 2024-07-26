@@ -14,7 +14,7 @@ import {
   URLTypography,
 } from "./router-link";
 
-const Dashboard = Loadable(lazy(() => import("@/layout/Dashboard")));
+const RootLayout = Loadable(lazy(() => import("@/layout/root-layout")));
 const Color = Loadable(lazy(() => import("@/pages/component-overview/color")));
 const Typography = Loadable(
   lazy(() => import("@/pages/component-overview/typography"))
@@ -35,7 +35,7 @@ const SamplePage = Loadable(
 
 const MainRoutes = {
   path: URLHome(),
-  element: <Dashboard />,
+  element: <RootLayout />,
   children: [
     {
       path: URLHome(),

@@ -24,10 +24,10 @@ import * as Yup from "yup";
 // project import
 
 // assets
+import AnimateButton from "@/components/ui/@extended/AnimateButton";
 import EyeInvisibleOutlined from "@ant-design/icons/EyeInvisibleOutlined";
 import EyeOutlined from "@ant-design/icons/EyeOutlined";
 import FirebaseSocial from "./FirebaseSocial";
-import AnimateButton from "../../../components/@extended/AnimateButton";
 
 // ============================|| JWT - LOGIN ||============================ //
 

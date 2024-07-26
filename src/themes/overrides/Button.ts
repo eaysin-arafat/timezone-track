@@ -2,10 +2,19 @@
 import { alpha } from "@mui/material/styles";
 
 // project import
+import { Theme } from "@mui/system";
 import getColors from "../../utils/getColors";
 import getShadow from "../../utils/getShadow";
 
-function getColorStyle({ variant, color, theme }) {
+function getColorStyle({
+  variant,
+  color,
+  theme,
+}: {
+  variant: string;
+  color: string;
+  theme: Theme;
+}) {
   const colors = getColors(theme, color);
   const { lighter, main, dark, darker, contrastText } = colors;
 
@@ -80,7 +89,7 @@ function getColorStyle({ variant, color, theme }) {
 
 // ==============================|| OVERRIDES - BUTTON ||============================== //
 
-export default function Button(theme) {
+export default function Button(theme: Theme) {
   const primaryDashed = getColorStyle({
     variant: "dashed",
     color: "primary",

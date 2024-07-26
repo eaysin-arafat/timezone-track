@@ -9,7 +9,7 @@ import { GithubOutlined } from "@ant-design/icons";
 import { Theme } from "@mui/material";
 import MobileSection from "./MobileSection";
 import Notification from "./Notification";
-import Profile from "./Profile";
+import Profile from "./profile";
 import Search from "./Search";
 
 // ==============================|| HEADER - CONTENT ||============================== //

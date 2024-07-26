@@ -1,13 +1,12 @@
-import ClockItem from "@/components/clock-item";
+import ClockList from '@/components/clocks/clock-list'
 
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material'
 
 export default function Clock() {
   return (
     <>
       <Typography variant="h5">Clocks</Typography>
-
-      <ClockItem />
+      <ClockList />
     </>
-  );
+  )
 }

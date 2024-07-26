@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Define interface for a single event item
 export interface MenuItemType {
   id: string;
@@ -9,6 +10,7 @@ export interface MenuItemType {
   breadcrumbs?: boolean;
   target?: boolean;
   external?: boolean;
+  isRoute?: boolean;
 }
 
 // Define interface for the events group

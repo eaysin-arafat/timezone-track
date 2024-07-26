@@ -5,7 +5,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 // project import
-import Logo from "../../components/logo/LogoMain";
+import AuthBackground from "@/assets/images/auth/AuthBackground";
+import Logo from "@/components/shared/logo/LogoMain";
 import AuthFooter from "../../components/shared/cards/AuthFooter";
 import AuthCard from "./AuthCard";
 

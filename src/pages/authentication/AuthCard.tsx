@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
-
 // material-ui
+import MainCard from "@/components/shared/main-card";
 import Box from "@mui/material/Box";
 
 // project import
@@ -25,5 +24,3 @@ export default function AuthCard({ children, ...other }) {
     </MainCard>
   );
 }
-
-AuthCard.propTypes = { children: PropTypes.node, other: PropTypes.any };

@@ -1,5 +1,5 @@
 import Loadable from "@/components/core/loadable";
-import MinimalLayout from "@/layout/MinimalLayout";
+import MinimalLayout from "@/layout/minimal-layout";
 import { lazy } from "react";
 
 // project import

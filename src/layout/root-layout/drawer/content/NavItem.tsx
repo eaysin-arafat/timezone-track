@@ -6,8 +6,7 @@ import { Link, matchPath, useLocation } from "react-router-dom";
 import { RootState } from "@/app/store";
 import { MenuItemType } from "@/constants/types/menu-item";
 import { setActiveItem } from "@/features/sidebar/sidebar";
-import Avatar from "@mui/material/Avatar";
-import Chip, { ChipProps } from "@mui/material/Chip";
+import { ChipProps } from "@mui/material/Chip";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -89,7 +88,12 @@ export default function NavItem({ item, level }: NavItemProps) {
     <ListItemButton
       {...listItemProps}
       disabled={item.disabled}
-      onClick={() => dispatch(setActiveItem(item.id))}
+      onClick={() => {
+        dispatch(setActiveItem(item.id));
+        if (item.onClick) {
+          dispatch(item.onClick({ timezone: "PST", title: "MyClock" }));
+        }
+      }}
       selected={isSelected}
       sx={{
         zIndex: 1201,
@@ -161,7 +165,7 @@ export default function NavItem({ item, level }: NavItemProps) {
           }
         />
       )}
-      {(isDrawerOpen || (!isDrawerOpen && level !== 1)) && item.chip && (
+      {/* {(isDrawerOpen || (!isDrawerOpen && level !== 1)) && item.chip && (
         <Chip
           color={item.chip.color}
           variant={item.chip.variant}
@@ -169,7 +173,7 @@ export default function NavItem({ item, level }: NavItemProps) {
           label={item.chip.label}
           avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
         />
-      )}
+      )} */}
     </ListItemButton>
   );
 }

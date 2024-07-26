@@ -1,26 +1,27 @@
 // third-party
-import { merge } from 'lodash';
+import { merge } from "lodash";
 
 // project import
-import Badge from './Badge';
-import Button from './Button';
-import CardContent from './CardContent';
-import Checkbox from './Checkbox';
-import Chip from './Chip';
-import IconButton from './IconButton';
-import InputLabel from './InputLabel';
-import LinearProgress from './LinearProgress';
-import Link from './Link';
-import ListItemIcon from './ListItemIcon';
-import OutlinedInput from './OutlinedInput';
-import Tab from './Tab';
-import TableCell from './TableCell';
-import Tabs from './Tabs';
-import Typography from './Typography';
+import { Theme } from "@mui/system";
+import Badge from "./Badge";
+import Button from "./Button";
+import CardContent from "./CardContent";
+import Checkbox from "./Checkbox";
+import Chip from "./Chip";
+import IconButton from "./IconButton";
+import InputLabel from "./InputLabel";
+import LinearProgress from "./LinearProgress";
+import Link from "./Link";
+import ListItemIcon from "./ListItemIcon";
+import OutlinedInput from "./OutlinedInput";
+import Tab from "./Tab";
+import TableCell from "./TableCell";
+import Tabs from "./Tabs";
+import Typography from "./Typography";
 
 // ==============================|| OVERRIDES - MAIN ||============================== //
 
-export default function ComponentsOverrides(theme) {
+export default function ComponentsOverrides(theme: Theme) {
   return merge(
     Button(theme),
     Badge(theme),

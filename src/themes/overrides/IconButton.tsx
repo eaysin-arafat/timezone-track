@@ -1,6 +1,6 @@
 // ==============================|| OVERRIDES - ICON BUTTON ||============================== //
 
-import { Theme } from "@mui/material/styles";
+import { Theme } from "@mui/system";
 
 export default function IconButton(theme: Theme) {
   return {

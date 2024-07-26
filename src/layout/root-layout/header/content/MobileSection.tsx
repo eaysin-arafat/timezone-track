@@ -13,24 +13,24 @@ import Toolbar from "@mui/material/Toolbar";
 // project import
 
 // assets
-import MoreOutlined from "@ant-design/icons/MoreOutlined";
-import Profile from "./Profile";
-import Search from "./Search";
 import Transitions from "@/components/ui/@extended/Transitions";
+import MoreOutlined from "@ant-design/icons/MoreOutlined";
+import Profile from "./profile";
+import Search from "./Search";
 
-// ==============================|| HEADER CONTENT - MOBILE ||============================== //
+// HEADER CONTENT - MOBILE
 
 export default function MobileSection() {
   const theme = useTheme();
 
   const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
+  const anchorRef: React.MutableRefObject<null> = useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent | TouchEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -64,7 +64,6 @@ export default function MobileSection() {
           aria-haspopup="true"
           onClick={handleToggle}
           color="secondary"
-          variant="light"
         >
           <MoreOutlined />
         </IconButton>
